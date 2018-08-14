@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>北京理工大学信息抽取和知识图谱构建技术平台</title>
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+
+    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+
+    <!--设置标签图标-->
+    <link href="img/favicon.png" rel="shortcut icon"/>
+
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="js/plugins/layer/layer.min.js"></script>
+
+    <!-- 自定义js -->
+    <script src="js/hAdmin.js?v=4.1.0"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <!-- 第三方插件 -->
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close"><i class="fa fa-times-circle"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <!--回首页-->
+                        <a href="index.html">
+                        <span class="clear">
+                            <span class="block m-t-xs" style="font-size:20px;">
+                                        <img src="img/大学.png" style="width: 30px;height: 35px;">
+                                        <strong class="font-bold">BIT_IE</strong>
+                            </span>
+                        </span>
+                        </a>
+                    </div>
+                    <!--回首页-->
+                    <div class="logo-element"><a href="index.html">BIT_IE</a></div>
+
+                </li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">信息抽取</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-magnet"></i>
+                        <span class="nav-label">关键字提取</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="kerword_tfidf.html">TF-IDF</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="kerword_tfidf.html">TextRank</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="kerword_tfidf.html">LDA</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-magnet"></i>
+                        <span class="nav-label">实体识别</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="ner_crf.html">CRF</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="ner_bilstm_crf.html">BiLSTM-CRF</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-magnet"></i>
+                        <span class="nav-label">关系抽取</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="re_crf.html">CRF</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="re_rnn.html">RNN</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="re_cnn.html">CNN</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="line dk"></li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">知识图谱</span>
+                </li>
+                <li>
+                    <a href="mailbox.html">
+                        <i class="glyphicon glyphicon-retweet"></i>
+                        <span class="nav-label">信箱 </span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="mailbox.html">收件箱</a>
+                        </li>
+                        <li><a class="J_menuItem" href="mail_detail.html">查看邮件</a>
+                        </li>
+                        <li><a class="J_menuItem" href="mail_compose.html">写信</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="form_basic.html">基本表单</a>
+                        </li>
+                        <li><a class="J_menuItem" href="form_validate.html">表单验证</a>
+                        </li>
+                        <li><a class="J_menuItem" href="form_advanced.html">高级插件</a>
+                        </li>
+                        <li><a class="J_menuItem" href="form_wizard.html">表单向导</a>
+                        </li>
+                        <li>
+                            <a href="#">文件上传 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="form_webuploader.html">百度WebUploader</a>
+                                </li>
+                                <li><a class="J_menuItem" href="form_file_upload.html">DropzoneJS</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">编辑器 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="form_editors.html">富文本编辑器</a>
+                                </li>
+                                <li><a class="J_menuItem" href="form_simditor.html">simditor</a>
+                                </li>
+                                <li><a class="J_menuItem" href="form_markdown.html">MarkDown编辑器</a>
+                                </li>
+                                <li><a class="J_menuItem" href="code_editor.html">代码编辑器</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="layerdate.html">日期选择器layerDate</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">页面</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="contacts.html">联系人</a>
+                        </li>
+                        <li><a class="J_menuItem" href="profile.html">个人资料</a>
+                        </li>
+                        <li>
+                            <a href="#">项目管理 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="projects.html">项目</a>
+                                </li>
+                                <li><a class="J_menuItem" href="project_detail.html">项目详情</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="teams_board.html">团队管理</a>
+                        </li>
+                        <li><a class="J_menuItem" href="social_feed.html">信息流</a>
+                        </li>
+                        <li><a class="J_menuItem" href="clients.html">客户管理</a>
+                        </li>
+                        <li><a class="J_menuItem" href="file_manager.html">文件管理器</a>
+                        </li>
+                        <li><a class="J_menuItem" href="calendar.html">日历</a>
+                        </li>
+                        <li>
+                            <a href="#">博客 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="blog.html">文章列表</a>
+                                </li>
+                                <li><a class="J_menuItem" href="article.html">文章详情</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="faq.html">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="#">时间轴 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="timeline.html">时间轴</a>
+                                </li>
+                                <li><a class="J_menuItem" href="timeline_v2.html">时间轴v2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="pin_board.html">标签墙</a>
+                        </li>
+                        <li>
+                            <a href="#">单据 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="invoice.html">单据</a>
+                                </li>
+                                <li><a class="J_menuItem" href="invoice_print.html">单据打印</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="search_results.html">搜索结果</a>
+                        </li>
+                        <li><a class="J_menuItem" href="forum_main.html">论坛</a>
+                        </li>
+                        <li>
+                            <a href="#">即时通讯 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="chat_view.html">聊天窗口</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">登录注册相关 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a href="login.html" target="_blank">登录页面</a>
+                                </li>
+                                <li><a href="login_v2.html" target="_blank">登录页面v2</a>
+                                </li>
+                                <li><a href="register.html" target="_blank">注册页面</a>
+                                </li>
+                                <li><a href="lockscreen.html" target="_blank">登录超时</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="404.html">404页面</a>
+                        </li>
+                        <li><a class="J_menuItem" href="500.html">500页面</a>
+                        </li>
+                        <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="line dk"></li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">常用下载</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-picture-o"></i>
+                        <span class="nav-label">数据集</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="basic_gallery.html">实体识别</a>
+                        </li>
+                        <li><a class="J_menuItem" href="carousel.html">关系抽取</a>
+                        </li>
+                        <li><a class="J_menuItem" href="blueimp.html">情感分析</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--左侧导航结束-->
+    <!--右侧部分开始-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i
+                        class="fa fa-bars"></i> </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search"
+                                       id="top-search">
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!--默认首页-->
+        <div class="row J_mainContent" id="content-main">
+            <iframe id="J_iframe" width="100%" height="100%" src="main.html" frameborder="0"
+                    data-id="index_v1.html" seamless></iframe>
+        </div>
+    </div>
+    <!--右侧部分结束-->
+</div>
+
+</body>
+
+</html>
