@@ -1,0 +1,21 @@
+{% extends "basic.html" %}
+
+{% block title %}404{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <div class="middle-box text-center animated fadeInDown">
+        <h1>500</h1>
+        <h3 class="font-bold">服务器又在偷懒了~~~</h3>
+
+        <div class="error-desc">
+            <a href="index.html" class="btn btn-primary m-t">返回主页</a>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ super() }}
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends "basic.html" %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <!--回首页-->
+                            <a href="index.html">
+                        <span class="clear">
+                            <span class="block m-t-xs" style="font-size:20px;">
+                                        <img src={{ url_for('static',filename="img/大学.png") }} style="width:30px;height:35px;">
+                                        <strong class="font-bold">BITIE</strong>
+                            </span>
+                        </span>
+                            </a>
+                        </div>
+                        <!--回首页-->
+                        <div class="logo-element"><a href="index.html">BITIE</a></div>
+
+                    </li>
+                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                        <span class="ng-scope">信息抽取</span>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="keyword.html">
+                            <i class="glyphicon glyphicon-magnet"></i>
+                            <span class="nav-label">关键字提取</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="ner.html">
+                            <i class="glyphicon glyphicon-magnet"></i>
+                            <span class="nav-label">命名实体识别</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="re.html">
+                            <i class="glyphicon glyphicon-magnet"></i>
+                            <span class="nav-label">实体关系抽取</span>
+                        </a>
+                    </li>
+                    <li class="line dk"></li>
+                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                        <span class="ng-scope">知识图谱</span>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="ner.html">
+                            <i class="glyphicon glyphicon-book"></i>
+                            <span class="nav-label">实体查询</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="ner.html">
+                            <i class="glyphicon glyphicon-book"></i>
+                            <span class="nav-label">关系查询</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="ner.html">
+                            <i class="glyphicon glyphicon-book"></i>
+                            <span class="nav-label">知识推理</span>
+                        </a>
+                    </li>
+                    <li class="line dk"></li>
+                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                        <span class="ng-scope">常用下载</span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon-download"></i>
+                            <span class="nav-label">数据集</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li><a class="J_menuItem" href="basic_gallery.html">实体识别</a>
+                            </li>
+                            <li><a class="J_menuItem" href="carousel.html">关系抽取</a>
+                            </li>
+                            <li><a class="J_menuItem" href="blueimp.html">情感分析</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i
+                            class="fa fa-bars"></i> </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                                <div class="form-group">
+                                    <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control"
+                                           name="top-search"
+                                           id="top-search">
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!--默认首页-->
+            <div class="row J_mainContent" id="content-main">
+                <iframe id="J_iframe" width="100%" height="100%" src="main.html" frameborder="0"
+                        data-id="index_v1.html" seamless></iframe>
+            </div>
+        </div>
+        <!--右侧部分结束-->
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ super() }}
+{% endblock %}
