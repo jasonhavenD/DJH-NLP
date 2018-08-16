@@ -1,0 +1,51 @@
+/home/jasonhaven/anaconda3/bin/python3.6 /home/jasonhaven/workspace/github/IE_KG/Back-end/IEServer/app.py
+ * Serving Flask app "init_route" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 244-585-297
+127.0.0.1 - - [16/Aug/2018 15:05:43] "GET /BITIE/index.html HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2018 15:05:43] "GET /BITIE/main.html HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2018 15:05:44] "GET /static/img/favicon.png HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2018 15:05:45] "GET /BITIE/dataset.html HTTP/1.1" 200 -
+[2018-08-16 15:05:48,061] INFO in init_route: download....
+[2018-08-16 15:05:48,061] INFO in init_route: file exists!
+127.0.0.1 - - [16/Aug/2018 15:05:48] "GET /BITIE/download/d.tar.gz HTTP/1.1" 200 -
+/home/jasonhaven/anaconda3/bin/python3.6 /home/jasonhaven/workspace/github/IE_KG/Back-end/IEServer/app.py
+ * Serving Flask app "init_route" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 244-585-297
+127.0.0.1 - - [16/Aug/2018 15:05:43] "GET /BITIE/index.html HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2018 15:05:43] "GET /BITIE/main.html HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2018 15:05:44] "GET /static/img/favicon.png HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2018 15:05:45] "GET /BITIE/dataset.html HTTP/1.1" 200 -
+[2018-08-16 15:05:48,061] INFO in init_route: download....
+[2018-08-16 15:05:48,061] INFO in init_route: file exists!
+127.0.0.1 - - [16/Aug/2018 15:05:48] "GET /BITIE/download/d.tar.gz HTTP/1.1" 200 -
+/home/jasonhaven/anaconda3/bin/python3.6 /home/jasonhaven/workspace/github/IE_KG/Back-end/IEServer/app.py
+ * Serving Flask app "init_route" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 244-585-297
+127.0.0.1 - - [16/Aug/2018 15:05:43] "GET /BITIE/index.html HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2018 15:05:43] "GET /BITIE/main.html HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2018 15:05:44] "GET /static/img/favicon.png HTTP/1.1" 200 -
+127.0.0.1 - - [16/Aug/2018 15:05:45] "GET /BITIE/dataset.html HTTP/1.1" 200 -
+[2018-08-16 15:05:48,061] INFO in init_route: download....
+[2018-08-16 15:05:48,061] INFO in init_route: file exists!
+127.0.0.1 - - [16/Aug/2018 15:05:48] "GET /BITIE/download/d.tar.gz HTTP/1.1" 200 -

@@ -122,6 +122,7 @@ DOWNLOAD_FOLDER = 'download'
 
 @app.route('/BITIE/download/<filename>', methods=['GET'])
 def download(filename):
+	app.logger.debug('download_file...')
 	if os.path.exists(os.path.join(DOWNLOAD_FOLDER, filename)) and os.path.isfile(
 			os.path.join(DOWNLOAD_FOLDER, filename)):
 		response = make_response(send_from_directory(DOWNLOAD_FOLDER, filename, as_attachment=True))
@@ -150,6 +151,8 @@ def upload_file():
 		text:content of file
 		desc:description of status
 	'''
+	app.logger.debug('upload_file...')
+
 	data = {}
 	data['status'] = False
 	data['desc'] = ''
@@ -176,20 +179,42 @@ def upload_file():
 		data['status'] = True
 		data['text'] = text
 		return jsonify(data)
-	return render_template('404.html')
+	data['desc'] = "文件类型不支持!"
+	return jsonify(data)
 
 
 '''
 业务处理
 '''
-#
-# from keyword_extract import extract as ke
-#
-#
-# @app.route("/BITIE/keyword_extract")
-# def keyword_extract():
-# 	app.logger.info('keyword_extract....')
-#
-# 	result = ke("123456")
-#
-# 	return jsonify(result)
+
+from keyword_extract import extract as ke
+
+
+@app.route("/BITIE/keyword_extract", methods=['POST'])
+def keyword_extract():
+	app.logger.debug('keyword_extract...')
+	data = {}
+	data['status'] = False
+	data['result'] = []
+
+	# app.logger.debug(request.args)
+	# app.logger.debug(request.values)
+	# app.logger.debug(request.data)
+	# app.logger.debug(request.get_json())
+	# app.logger.debug(request.form)
+
+	text = request.form.get('text', 'hello,world')
+	show_num = request.form.get('show_num', 5)
+	alogrithm = request.form.get('alogrithm', 'tfidf')
+	language = request.form.get('language', 'chinese')
+	input_type = request.form.get('input_type', '0')
+
+	app.logger.debug("{},{},{},{}".format(show_num, alogrithm, input_type,language))
+
+	data['result'] = ke(text, int(show_num), alogrithm, input_type,language)
+	data['status'] = True
+
+	import time
+	time.sleep(3)
+
+	return jsonify(data)

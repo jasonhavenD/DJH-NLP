@@ -3,123 +3,124 @@
 {% block title %}首页{% endblock %}
 
 {% block head %}
-    {{ super() }}
+{{ super() }}
 {% endblock %}
 
 {% block content %}
-    <body class="gray-bg">
-    <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-sm-4">
-            <h2>信息抽取-<strong>实体关系抽取</strong></h2>
-            <ol class="breadcrumb">
-                <li>
-                    <a href="index.html">主页</a>
-                </li>
-                <li>
-                    <strong>实体关系抽取</strong>
-                </li>
-            </ol>
-        </div>
-        <div class="col-sm-8">
-            <div class="title-action">
-                <a href="main.html" class="btn btn-primary">打开主页</a>
-            </div>
+<body class="gray-bg">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>信息抽取-<strong>实体关系抽取</strong></h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">主页</a>
+            </li>
+            <li>
+                <strong>实体关系抽取</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="main.html" class="btn btn-primary">打开主页</a>
         </div>
     </div>
+</div>
 
-    <div class="wrapper wrapper-content animated fadeIn">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>文件上传</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="page-container">
-                            <form action="#">
-                                <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-                                <div class="row fileupload-buttonbar">
-                                    <div class="col-lg-7">
-                                        <!-- The fileinput-button span is used to style the file input field as button -->
-                                        <span class="btn btn-success fileinput-button">
-                                    <i class="glyphicon glyphicon-plus"></i>
-                                    <span>Add files...</span>
-                                    <input type="file" name="files[]" multiple>
-                                </span>
-                                        <button type="submit" class="btn btn-primary start">
-                                            <i class="glyphicon glyphicon-upload"></i>
-                                            <span>Start upload</span>
-                                        </button>
-
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>文件上传</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="page-container">
+                        <span class="btn btn-success fileinput-button">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>选择文件</span>
+                                <input type="file" name="myfile">
+                        </span>
+                        <button onclick="upload_file();" id="btn_upload" class="btn btn-primary btn-sm ">
+                            <i class="glyphicon glyphicon-upload"></i>
+                            <span>上传</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>输入数据</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="page-container">
-                            <!--tfidf-->
-                            <!--textrank-->
-                            <!--lda-->
-                            <textarea class="form-control" placeholder="输入文本数据......"
-                                      style="margin: 0px -2px 0px 0px;height: 150px;resize: none"></textarea>
-
-                            <div class="hr-line-dashed"></div>
-                            <h5>
-                                设置结果显示数目
-                            </h5>
-                            <div id="ionrange1"></div>
-                            <div class="hr-line-dashed"></div>
-                            <h5>
-                                设置实现算法
-                            </h5>
-                            <div class="form-group">
-
-                                <label>
-                                    <input type="radio" checked value="tfidf" name="alogrithm"> <i></i> TF-IDF</label>
-                                <label>
-                                    <input type="radio" disabled name="alogrithm" value="textrank"> <i></i>
-                                    TextRank（禁用）</label>
-                                <label>
-                                    <input type="radio" disabled name="alogrithm" value="lad"> <i></i> LDA（禁用）</label>
-                            </div>
-                        </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>输入数据</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="page-container">
+                        <!--tfidf-->
+                        <!--textrank-->
+                        <!--lda-->
+                        <textarea id="input_area" class="form-control" placeholder="输入文本数据......"
+                                  style="margin: 0px -2px 0px 0px;height: 150px;resize: none"></textarea>
 
                         <div class="hr-line-dashed"></div>
-                        <a href="#" class="btn btn-primary pull-right">开始处理</a>
-                        <p>&nbsp;</p>
+                        <h3>
+                            设置结果显示数目
+                        </h3>
+                        <input id="ionrange1"></input>
+                        <div class="hr-line-dashed"></div>
+                        <h3>
+                            设置语种类型
+                        </h3>
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" checked name="language" value="chinese"> <i></i> 中文</label>
+                            <label>
+                                <input type="radio" name="language" value="english"> <i></i>
+                                英文</label>
+                        </div>
+                    </div>
+                    <h3>
+                        设置实现算法
+                    </h3>
+                    <div class="form-group">
+
+                        <label>
+                            <input type="radio" checked value="tfidf" name="alogrithm"> <i></i> TF-IDF</label>
+                        <label>
+                            <input type="radio" disabled name="alogrithm" value="textrank"> <i></i>
+                            TextRank（禁用）</label>
+                        <label>
+                            <input type="radio" disabled name="alogrithm" value="lad"> <i></i> LDA（禁用）</label>
+                    </div>
+                </div>
+                <a onclick="process();" style="margin-right: 20px;" class="btn btn-primary pull-right">开始处理</a>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="myloading" hidden class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h3 style="color: #7266ba">
+                        正在处理,请稍后......
+                    </h3>
+                    <div class="page-container">
+                        <center><img src={{url_for('static',filename="img/loading.svg")}}/></center>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="ibox-content">
-        <div class="sk-spinner sk-spinner-circle">
-            <div class="sk-circle1 sk-circle"></div>
-            <div class="sk-circle2 sk-circle"></div>
-            <div class="sk-circle3 sk-circle"></div>
-            <div class="sk-circle4 sk-circle"></div>
-            <div class="sk-circle5 sk-circle"></div>
-            <div class="sk-circle6 sk-circle"></div>
-            <div class="sk-circle7 sk-circle"></div>
-            <div class="sk-circle8 sk-circle"></div>
-            <div class="sk-circle9 sk-circle"></div>
-            <div class="sk-circle10 sk-circle"></div>
-            <div class="sk-circle11 sk-circle"></div>
-            <div class="sk-circle12 sk-circle"></div>
-        </div>
-    </div>
-
+</div>
+<div class="wrapper wrapper-content animated fadeIn">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
@@ -135,28 +136,12 @@
                                     <tr>
                                         <th>#</th>
                                         <th>keyword</th>
-                                        <th>Value</th>
+                                        <th>Weight</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>张三</td>
-                                        <td>23</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>李四</td>
-                                        <td>27</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>王麻子</td>
-                                        <td>65</td>
-                                    </tr>
+                                    <tbody id="mytbody">
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -164,8 +149,180 @@
             </div>
         </div>
     </div>
-    </body>
+</div>
+</body>
 {% endblock %}
 {% block footer %}
-    {{ super() }}
+{{ super() }}
+<script>
+    var input_type = 0 //0: textarea,1:file
+
+    function upload_file() {
+        var files = $('input[name="myfile"]').prop('files');//获取到文件列表
+        var file = files[0];
+        if (file == undefined) {
+            swal({
+                title: "提示信息",
+                type: "warning",
+                showCancelButton: false,
+                confirmButtonColor: '#DD6B55',
+                text: "第一步：先选择一个文本文件！"
+            });
+        }
+        else {
+            var form = new FormData();
+            form.append('myfile', file);
+            $.ajax({
+                url: "/BITIE/upload",
+                type: "post",
+                data: form,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    upload_callback(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    swal({
+                        title: "错误信息",
+                        type: "error",
+                        showCancelButton: false,
+                        confirmButtonColor: '#DD6B55',
+                        text: "status:" + XMLHttpRequest.status + " textinfo:" + textStatus
+                    });
+                }
+            });
+        }
+    }
+
+    function upload_callback(data) {
+        if (data['status']) {
+            swal({
+                title: "上传成功",
+                type: "success",
+                showCancelButton: false,
+                showConfirmButton: false,
+                timer: 900
+            })
+            //阻塞，同步
+            setTimeout(function () {
+                //控制前台展示的文本数量
+                if (data['text'].length > 1000) {
+                    show_text = data['text'].slice(0, 1000)
+                    show_text += "\n......未完全显示"
+                } else {
+                    show_text = data['text']
+                }
+                $('#input_area').val(show_text);
+            }, 1000);
+            input_type = 1;
+
+        } else {
+            swal({
+                title: "错误信息",
+                type: "error",
+                showCancelButton: false,
+                confirmButtonColor: '#DD6B55',
+                text: data['desc']
+            });
+        }
+    }
+
+    $("#ionrange1").on("change", function () {
+        var $this = $(this),
+            value = $this.prop("value");
+        console.log("Value: " + value);
+    });
+
+    function process() {
+        $('#mytbody').html('');
+        var text = $('#input_area').val();
+        var show_num = $("#ionrange1").val();
+        var algorithm = $('input[name="alogrithm"]:checked').val();
+        var language = $('input[name="language"]:checked').val();
+
+        if (text == "") {
+            swal({
+                title: "提示信息",
+                type: "warning",
+                showCancelButton: false,
+                confirmButtonColor: '#DD6B55',
+                text: "请输入数据！"
+            });
+        } else {
+            var form = new FormData();
+            form.append("text", text)
+            form.append("show_num", parseInt(show_num))
+            form.append("alogrithm", algorithm)
+            form.append("language", language)
+            form.append("input_type", input_type)
+
+            $.ajax({
+                url: "/BITIE/keyword_extract",
+                type: "post",
+                data: form,
+                cache: false,
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    $("#myloading").show();
+                },
+                success: function (data) {
+                    process_callback(data);
+                    $("#myloading").hide();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    swal({
+                        title: "错误信息",
+                        type: "error",
+                        showCancelButton: false,
+                        confirmButtonColor: '#DD6B55',
+                        text: "status:" + XMLHttpRequest.status + " textinfo:" + textStatus
+                    });
+                    $("#myloading").hide();
+                }
+            });
+        }
+    }
+
+    function process_callback(data) {
+        var status = data['status']
+        result = data['result']
+        if (status) {
+            show_output(result)
+        } else {
+            swal({
+                title: "错误信息",
+                type: "error",
+                showCancelButton: false,
+                confirmButtonColor: '#DD6B55',
+                text: '请等待工作人员调试，服务器处理出错了！'
+            });
+        }
+    }
+
+    function show_output(data) {
+        //后端排序
+        var html = "";
+        if (data.length == 0) {
+            html += "<tr>\n" +
+                "<td>暂无数据</td>\n" +
+                "<td></td>\n" +
+                "<td></td>\n" +
+                "</tr>"
+        } else {
+            $.each(data, function (i, v) {
+                html += "<tr>\n" +
+                    "<td>" + parseInt(i+1) + "</td>\n" +
+                    "<td>" + v.toString().split(',')[0] + "</td>\n" +
+                    "<td>" + v.toString().split(',')[1] + "</td>\n" +
+                    "</tr>"
+            });
+        }
+        $('#mytbody').append(html);
+    }
+
+
+</script>
+
 {% endblock %}

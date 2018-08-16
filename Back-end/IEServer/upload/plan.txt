@@ -1,0 +1,35 @@
+ 《软著》
+ 《学习》
+ 《项目》
+
+
+李宏毅 哔哩哔哩 2 - 5
+NG 网易云课 2 - 3
+cs224n 哔哩哔哩 2-4
+
+翔智-tensorflow-关系抽取-web界面显示
+小论文
+
+
+RNN
+GRU
+LSTM
+BiLSTM
+
+Attention
+
+CNN
+PCNN
+CapsNN
+
+PCNN+ATT / LSTM+ATT
+
+GAN
+DBN
+
+
+实战 
+tf学习
+pytorch学习
+实现代码 （统计学习和神经网络）
+读论文
