@@ -17,6 +17,10 @@
             <link href={{ url_for('static',filename="css/font-awesome.min.css") }} rel="stylesheet">
             <link href={{ url_for('static',filename="css/animate.css") }} rel="stylesheet">
             <link href={{ url_for('static',filename="css/style.css") }} rel="stylesheet">
+            <script src={{ url_for('static',filename="js/plugins/layer/layer.min.js") }}></script>
+
+            <!-- Sweet Alert -->
+            <link href={{ url_for('static',filename="css/plugins/sweetalert/sweetalert.css")}} rel="stylesheet">
 
             <!--设置标签图标-->
             <link href={{ url_for('static',filename="img/favicon.png") }} rel="shortcut icon"/>
@@ -37,18 +41,17 @@
             <!-- 第三方插件 -->
             <script src={{ url_for('static',filename="js/plugins/pace/pace.min.js") }}></script>
 
-
-            <!--文件上传css-->
-            <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-            <link rel="stylesheet" href={{ url_for('static',filename="css/jquery.fileupload.css") }}>
-            <link rel="stylesheet" href={{ url_for('static',filename="css/jquery.fileupload-ui.css") }}>
-
             <!-- IonRangeSlider -->
             <link href={{ url_for('static',filename="css/plugins/ionRangeSlider/ion.rangeSlider.css") }} rel="stylesheet">
             <link href={{ url_for('static',filename="css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css") }} rel="stylesheet">
             <script src={{ url_for('static',filename="js/plugins/chosen/chosen.jquery.js") }}></script>
             <script src={{ url_for('static',filename="js/plugins/ionRangeSlider/ion.rangeSlider.min.js") }}></script>
             <script src={{ url_for('static',filename="js/demo/form-advanced-demo.js") }}></script>
+
+            <!--文件上传css-->
+            <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+            <link rel="stylesheet" href={{ url_for('static',filename="css/jquery.fileupload.css")}}>
+            <link rel="stylesheet" href={{ url_for('static',filename="css/jquery.fileupload-ui.css")}}>
 
         {% endblock %}
     </head>
@@ -62,21 +65,17 @@
     <!-- 自定义js -->
     <script src={{ url_for('static',filename="js/content.js") }}></script>
 
-    <!-- 文件上传 -->
-    <script type="text/javascript">
-        // 添加全局站点信息
-        var BASE_URL = 'js/plugins/webuploader';
-    </script>
-    <script src={{ url_for('static',filename="js/plugins/webuploader/webuploader.min.js") }}></script>
-
-    <script src={{ url_for('static',filename="js/demo/webuploader-demo.js") }}></script>
     <script src={{ url_for('static',filename="js/plugins/chosen/chosen.jquery.js") }}></script>
+
+    <!-- Sweet alert -->
+    <script src={{ url_for('static',filename="js/plugins/sweetalert/sweetalert.min.js")}}></script>
     <script src={{ url_for('static',filename="js/plugins/ionRangeSlider/ion.rangeSlider.min.js") }}></script>
     <script>
         $("#ionrange1").ionRangeSlider({
             min: 0,
             max: 100,
             from: 10,
+            type: 'single',
             prettify: false,
             hasGrid: true
         });
