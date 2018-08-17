@@ -95,6 +95,8 @@ def dataset():
 	return render_template('dataset.html')
 
 
+@app.route('/BITIE')
+@app.route('/BITIE/')
 @app.route('/BITIE/index')
 @app.route('/BITIE/index.html')
 def index():
@@ -172,7 +174,8 @@ def upload_file():
 		return jsonify(data)
 
 	if file and allowed_file(file.filename):
-		filename = secure_filename(file.filename)
+		# 上传到固定的文件
+		filename = secure_filename("tmp.txt")
 		file.save(os.path.join(upload_path, filename))
 		with open(os.path.join(upload_path, filename), 'r', encoding='utf-8') as f:
 			text = f.read()
@@ -187,34 +190,69 @@ def upload_file():
 业务处理
 '''
 
-from keyword_extract import extract as ke
+'''
+关键字提取
+'''
+from keyword_extract import tfidf4zh, tfidf4en, textrank4zh, textrank4en
 
 
 @app.route("/BITIE/keyword_extract", methods=['POST'])
 def keyword_extract():
 	app.logger.debug('keyword_extract...')
+
 	data = {}
 	data['status'] = False
 	data['result'] = []
 
-	# app.logger.debug(request.args)
-	# app.logger.debug(request.values)
-	# app.logger.debug(request.data)
-	# app.logger.debug(request.get_json())
-	# app.logger.debug(request.form)
-
 	text = request.form.get('text', 'hello,world')
-	show_num = request.form.get('show_num', 5)
+	show_num = int(request.form.get('show_num', 5))
 	alogrithm = request.form.get('alogrithm', 'tfidf')
 	language = request.form.get('language', 'chinese')
-	input_type = request.form.get('input_type', '0')
+	input_type = int(request.form.get('input_type', 0))
 
-	app.logger.debug("{},{},{},{}".format(show_num, alogrithm, input_type,language))
+	app.logger.debug("{},{},{},{}".format(show_num, alogrithm, input_type, language))
 
-	data['result'] = ke(text, int(show_num), alogrithm, input_type,language)
-	data['status'] = True
-
-	import time
-	time.sleep(3)
+	if language == 'chinese':
+		if alogrithm == 'tfidf':  # OK
+			if input_type == 0:  # textarea input
+				data['result'] = tfidf4zh(text, show_num)
+				data['status'] = True
+			elif input_type == 1:  # file input
+				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
+				data['result'] = tfidf4zh(text, show_num)
+				data['status'] = True
+		elif alogrithm == 'textrank':  # OK
+			if input_type == 0:  # textarea input
+				data['result'] = textrank4zh(text, show_num)
+				data['status'] = True
+			elif input_type == 1:  # file input
+				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
+				data['result'] = textrank4zh(text, show_num)
+				data['status'] = True
+		elif alogrithm == 'lda':
+			if input_type == 0:  # textarea input
+				data['result'] = tfidf4zh(text, show_num)
+				data['status'] = True
+			elif input_type == 1:  # file input
+				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
+				data['result'] = tfidf4zh(text, show_num)
+				data['status'] = True
+	elif language == 'english':
+		if alogrithm == 'tfidf':
+			if input_type == 0:  # textarea input
+				data['result'] = tfidf4en(text, show_num)
+				data['status'] = True
+			elif input_type == 1:  # file input
+				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
+				data['result'] = tfidf4en(text, show_num)
+				data['status'] = True
+		elif alogrithm == 'textrank':
+			if input_type == 0:  # textarea input
+				data['result'] = textrank4en(text, show_num)
+				data['status'] = True
+			elif input_type == 1:  # file input
+				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
+				data['result'] = textrank4en(text, show_num)
+				data['status'] = True
 
 	return jsonify(data)
