@@ -9,6 +9,7 @@
    Change Activity:18-8-15:
 -------------------------------------------------
 """
+from log import Logger
 import mimetypes
 import os
 from flask import Flask, make_response, render_template, send_from_directory, request, flash, jsonify
@@ -16,7 +17,21 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-__dir__ = ['404', '500', 'main', 'index', 'keyword', 'main_keyword', 'ner', 're', 'dataset']
+__dir__ = ['404', '500', 'main', 'index', 'keyword', 'main_keyword', 'ner', 're', 'dataset', 'download', 'upload',
+           'keyword_extract']
+
+logger = Logger(isclean=False).get_logger()
+
+
+@app.before_request
+def before_request():
+	ip = request.remote_addr
+	url = request.url
+	logger.info('ip = {} , url = {}.'.format(ip, url))
+	extension=url.rsplit('.', 1)[1].lower()
+	filter_resource=set(['png','jpg','js','css'])
+	if extension not in filter_resource:
+		logger.info('ip = {} , url = {}.'.format(ip, url))
 
 
 @app.errorhandler(404)
@@ -57,8 +72,6 @@ def main_re():
 '''
 左侧栏目方法定义
 '''
-
-
 @app.route('/BITIE/keyword.html')
 def keyword():
 	'''
@@ -144,7 +157,7 @@ app.config['SECRET_KEY'] = '123456'
 
 
 @app.route('/BITIE/upload', methods=['POST', 'GET'])
-def upload_file():
+def upload():
 	'''
 	上传文件
 	:return:

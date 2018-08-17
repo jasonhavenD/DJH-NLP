@@ -321,7 +321,6 @@ function process_callback(data) {
     result = data['result']
     if (status) {
         show_output(result);
-        input_type = 0;
     } else {
         swal({
             title: "错误信息",
@@ -344,7 +343,9 @@ function show_output(data) {
         });
         return;
     }
-
+    //成功之后
+    input_type = 0;
+    $('#input_area').val('');
     var html = "";
     if (data.length == 0) {
         html += "<tr>\n" +
