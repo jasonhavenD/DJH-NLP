@@ -4,6 +4,8 @@
 
 {% block head %}
 {{ super() }}
+<!-- 第三方插件 -->
+<link href={{ url_for('static',filename="css/plugins/footable/footable.core.css") }} rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -75,30 +77,35 @@
                             设置语种类型
                         </h3>
                         <div class="form-group">
-                            <label>
-                                <input type="radio" checked name="language" value="chinese"> <i></i> 中文</label>
-                            <label>
-                                <input type="radio" name="language" value="english"> <i></i>
-                                英文</label>
+                            <div class="radio radio-info radio-inline">
+                                <input id="zh1" type="radio" checked value="chinese" name="language"
+                                       class="checkbox checkbox-success"><label for="zh1"><strong>中文</strong></label>
+                            </div>
+                            <span>&nbsp;&nbsp;</span>
+                            <div class="radio radio-info radio-inline">
+                                <input id="en1" type="radio" value="english" name="language"
+                                       class="checkbox checkbox-success"><label for="en1"><strong>英文</strong> </label>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <h3>
+                            设置实现算法
+                        </h3>
+                        <div class="form-group">
+                            <div class="radio radio-info radio-inline">
+                                <input id="tfidf" type="radio" checked value="tfidf" name="alogrithm"
+                                       class="checkbox checkbox-success"><label for="tfidf"><strong>TF-IDF</strong> </label>
+                            </div>
+                            <span>&nbsp;&nbsp;</span>
+                            <div class="radio radio-info radio-inline">
+                                <input id="textrank" type="radio" value="textrank" name="alogrithm"
+                                       class="checkbox"><label for="textrank"><strong>TextRank</strong> </label>
+                            </div>
                         </div>
                     </div>
-                    <h3>
-                        设置实现算法
-                    </h3>
-                    <div class="form-group">
-
-                        <label>
-                            <input type="radio" checked value="tfidf" name="alogrithm"> <i></i> TF-IDF</label>
-                        <label>
-                            <input type="radio" name="alogrithm" value="textrank"> <i></i>
-                            TextRank</label>
-                        <label>
-                            <input type="radio" disabled name="alogrithm" value="lad"> <i></i> LDA（禁用）</label>
-                    </div>
+                    <a onclick="process();" style="margin-right: 20px;" class="btn btn-primary pull-right">开始处理</a>
+                    <p>&nbsp;</p>
                 </div>
-                <a onclick="process();" style="margin-right: 20px;" class="btn btn-primary pull-right">开始处理</a>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
             </div>
         </div>
     </div>
@@ -130,8 +137,8 @@
                 <div class="ibox-content">
                     <div class="page-container">
                         <div class="ibox float-e-margins">
-                            <div class="ibox-content">
-                                <table class="table table-bordered">
+                            <div id="myoutput" class="ibox-content">
+                                <table id="mytable" class="footable table table-bordered" data-page-size="10">
                                     <thead>
                                     <tr>
                                         <th>#</th>
@@ -140,6 +147,18 @@
                                     </tr>
                                     </thead>
                                     <tbody id="mytbody">
+                                    <tr>
+                                        <td>暂无数据</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                            <ul class="pagination pull-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
                                     </tbody>
                                 </table>
                             </div>
@@ -154,175 +173,196 @@
 {% endblock %}
 {% block footer %}
 {{ super() }}
-<script>
-    var input_type = 0 //0: textarea,1:file
 
-    function upload_file() {
-        var files = $('input[name="myfile"]').prop('files');//获取到文件列表
-        var file = files[0];
-        if (file == undefined) {
-            swal({
-                title: "提示信息",
-                type: "warning",
-                showCancelButton: false,
-                confirmButtonColor: '#DD6B55',
-                text: "第一步：先选择一个文本文件！"
-            });
-        }
-        else {
-            var form = new FormData();
-            form.append('myfile', file);
-            $.ajax({
-                url: "/BITIE/upload",
-                type: "post",
-                data: form,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function (data) {
-                    upload_callback(data);
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    swal({
-                        title: "错误信息",
-                        type: "error",
-                        showCancelButton: false,
-                        confirmButtonColor: '#DD6B55',
-                        text: "status:" + XMLHttpRequest.status + " textinfo:" + textStatus
-                    });
-                }
-            });
-        }
+
+<!--数据下载-->
+<script src={{ url_for('static',filename="js/plugins/footable/footable.all.min.js") }}></script>
+
+<script >
+var input_type = 0 //0: textarea,1:file
+
+window.onload = function () {
+    $('.footable').footable();
+}
+
+function upload_file() {
+    var files = $('input[name="myfile"]').prop('files');//获取到文件列表
+    var file = files[0];
+    if (file == undefined) {
+        swal({
+            title: "提示信息",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: "第一步：先选择一个文本文件！"
+        });
+    }
+    else {
+        var form = new FormData();
+        form.append('myfile', file);
+        $.ajax({
+            url: "/BITIE/upload",
+            type: "post",
+            data: form,
+            timeout: 10000,//10s
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                upload_callback(data);
+            },
+            error: function (XMLHttpRequest, status) { //求完成后最终执行参数
+                swal({
+                    title: "错误信息",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: '#DD6B55',
+                    text: "status:" + XMLHttpRequest.status + " textinfo:" + status
+                });
+                $("#myloading").hide();
+            }
+        });
+    }
+}
+
+function upload_callback(data) {
+    if (data['status']) {
+        swal({
+            title: "上传成功",
+            type: "success",
+            showCancelButton: false,
+            showConfirmButton: false,
+            timer: 900
+        })
+        //阻塞，同步
+        setTimeout(function () {
+            //控制前台展示的文本数量
+            if (data['text'].length > 1000) {
+                show_text = data['text'].slice(0, 1000)
+                show_text += "\n......未完全显示......"
+            } else {
+                show_text = data['text']
+            }
+            $('#input_area').val(show_text);
+        }, 1000);
+        input_type = 1;
+
+    } else {
+        swal({
+            title: "错误信息",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: data['desc']
+        });
+    }
+}
+
+$("#ionrange1").on("change", function () {
+    var $this = $(this),
+        value = $this.prop("value");
+    console.log("Value: " + value);
+});
+
+function process() {
+    $('#mytbody').html('');
+    var text = $('#input_area').val();
+    var show_num = $("#ionrange1").val();
+    var algorithm = $('input[name="alogrithm"]:checked').val();
+    var language = $('input[name="language"]:checked').val();
+
+    if (text == "") {
+        swal({
+            title: "提示信息",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: "请输入数据！"
+        });
+    } else {
+        var form = new FormData();
+        form.append("text", text)
+        form.append("show_num", parseInt(show_num))
+        form.append("alogrithm", algorithm)
+        form.append("language", language)
+        form.append("input_type", input_type)
+
+        $.ajax({
+            url: "/BITIE/keyword_extract",
+            type: "post",
+            data: form,
+            timeout: 10000,//10s
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $("#myloading").show();
+            },
+            success: function (data) {
+                $("#myloading").hide();
+                process_callback(data);
+            },
+            error: function (XMLHttpRequest, status) { //求完成后最终执行参数
+                $("#myloading").hide();
+                swal({
+                    title: "错误信息",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: '#DD6B55',
+                    text: "status:" + XMLHttpRequest.status + " textinfo:" + status
+                });
+            }
+        });
+    }
+}
+
+function process_callback(data) {
+    var status = data['status']
+    result = data['result']
+    if (status) {
+        show_output(result);
+        input_type = 0;
+    } else {
+        swal({
+            title: "错误信息",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: '不好意思，服务器出故障了！'
+        });
+    }
+}
+
+function show_output(data) {
+    if (typeof (data) != "object" || data == null || data == undefined) {
+        swal({
+            title: "错误信息",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: '输出结果类型有问题！'
+        });
+        return;
     }
 
-    function upload_callback(data) {
-        if (data['status']) {
-            swal({
-                title: "上传成功",
-                type: "success",
-                showCancelButton: false,
-                showConfirmButton: false,
-                timer: 900
-            })
-            //阻塞，同步
-            setTimeout(function () {
-                //控制前台展示的文本数量
-                if (data['text'].length > 1000) {
-                    show_text = data['text'].slice(0, 1000)
-                    show_text += "\n......未完全显示"
-                } else {
-                    show_text = data['text']
-                }
-                $('#input_area').val(show_text);
-            }, 1000);
-            input_type = 1;
-
-        } else {
-            swal({
-                title: "错误信息",
-                type: "error",
-                showCancelButton: false,
-                confirmButtonColor: '#DD6B55',
-                text: data['desc']
-            });
-        }
-    }
-
-    $("#ionrange1").on("change", function () {
-        var $this = $(this),
-            value = $this.prop("value");
-        console.log("Value: " + value);
-    });
-
-    function process() {
-        $('#mytbody').html('');
-        var text = $('#input_area').val();
-        var show_num = $("#ionrange1").val();
-        var algorithm = $('input[name="alogrithm"]:checked').val();
-        var language = $('input[name="language"]:checked').val();
-
-        if (text == "") {
-            swal({
-                title: "提示信息",
-                type: "warning",
-                showCancelButton: false,
-                confirmButtonColor: '#DD6B55',
-                text: "请输入数据！"
-            });
-        } else {
-            var form = new FormData();
-            form.append("text", text)
-            form.append("show_num", parseInt(show_num))
-            form.append("alogrithm", algorithm)
-            form.append("language", language)
-            form.append("input_type", input_type)
-
-            $.ajax({
-                url: "/BITIE/keyword_extract",
-                type: "post",
-                data: form,
-                cache: false,
-                processData: false,
-                contentType: false,
-                beforeSend: function () {
-                    $("#myloading").show();
-                },
-                success: function (data) {
-                    process_callback(data);
-                    $("#myloading").hide();
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    swal({
-                        title: "错误信息",
-                        type: "error",
-                        showCancelButton: false,
-                        confirmButtonColor: '#DD6B55',
-                        text: "status:" + XMLHttpRequest.status + " textinfo:" + textStatus
-                    });
-                    $("#myloading").hide();
-                }
-            });
-        }
-    }
-
-    function process_callback(data) {
-        var status = data['status']
-        result = data['result']
-        if (status) {
-            show_output(result)
-        } else {
-            swal({
-                title: "错误信息",
-                type: "error",
-                showCancelButton: false,
-                confirmButtonColor: '#DD6B55',
-                text: '请等待工作人员调试，服务器处理出错了！'
-            });
-        }
-    }
-
-    function show_output(data) {
-        //后端排序
-        var html = "";
-        if (data.length == 0) {
+    var html = "";
+    if (data.length == 0) {
+        html += "<tr>\n" +
+            "<td>暂无数据</td>\n" +
+            "<td></td>\n" +
+            "<td></td>\n" +
+            "</tr>"
+    } else {
+        $.each(data, function (i, v) {
             html += "<tr>\n" +
-                "<td>暂无数据</td>\n" +
-                "<td></td>\n" +
-                "<td></td>\n" +
+                "<td>" + parseInt(i + 1) + "</td>\n" +
+                "<td>" + v.toString().split(',')[0] + "</td>\n" +
+                "<td>" + v.toString().split(',')[1] + "</td>\n" +
                 "</tr>"
-        } else {
-            $.each(data, function (i, v) {
-                html += "<tr>\n" +
-                    "<td>" + parseInt(i+1) + "</td>\n" +
-                    "<td>" + v.toString().split(',')[0] + "</td>\n" +
-                    "<td>" + v.toString().split(',')[1] + "</td>\n" +
-                    "</tr>"
-            });
-        }
-        $('#mytbody').append(html);
+        });
     }
-
+    $('#mytbody').append(html);
+}
 
 </script>
-
 {% endblock %}

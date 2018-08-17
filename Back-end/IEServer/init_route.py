@@ -215,44 +215,34 @@ def keyword_extract():
 	if language == 'chinese':
 		if alogrithm == 'tfidf':  # OK
 			if input_type == 0:  # textarea input
-				data['result'] = tfidf4zh(text, show_num)
-				data['status'] = True
+				data['result'], data['status'] = tfidf4zh(text, show_num)
 			elif input_type == 1:  # file input
 				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
-				data['result'] = tfidf4zh(text, show_num)
-				data['status'] = True
+				data['result'], data['status'] = tfidf4zh(text, show_num)
 		elif alogrithm == 'textrank':  # OK
 			if input_type == 0:  # textarea input
-				data['result'] = textrank4zh(text, show_num)
-				data['status'] = True
+				data['result'], data['status'] = textrank4zh(text, show_num)
 			elif input_type == 1:  # file input
 				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
-				data['result'] = textrank4zh(text, show_num)
-				data['status'] = True
+				data['result'], data['status'] = textrank4zh(text, show_num)
 		elif alogrithm == 'lda':
 			if input_type == 0:  # textarea input
-				data['result'] = tfidf4zh(text, show_num)
-				data['status'] = True
+				data['result'], data['status'] = tfidf4zh(text, show_num)
 			elif input_type == 1:  # file input
 				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
-				data['result'] = tfidf4zh(text, show_num)
-				data['status'] = True
+				data['result'], data['status'] = tfidf4zh(text, show_num)
 	elif language == 'english':
-		if alogrithm == 'tfidf':
+		if alogrithm == 'tfidf':  # OK
 			if input_type == 0:  # textarea input
-				data['result'] = tfidf4en(text, show_num)
-				data['status'] = True
+				data['result'], data['status'] = tfidf4en(text, show_num)
 			elif input_type == 1:  # file input
 				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
-				data['result'] = tfidf4en(text, show_num)
-				data['status'] = True
-		elif alogrithm == 'textrank':
+				data['result'], data['status'] = tfidf4en(text, show_num)
+		elif alogrithm == 'textrank':  # OK
 			if input_type == 0:  # textarea input
-				data['result'] = textrank4en(text, show_num)
-				data['status'] = True
+				data['result'], data['status'] = textrank4en(text, show_num)
 			elif input_type == 1:  # file input
 				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
-				data['result'] = textrank4en(text, show_num)
-				data['status'] = True
+				data['result'], data['status'] = textrank4en(text, show_num)
 
 	return jsonify(data)

@@ -10,7 +10,6 @@
 
 {% block content %}
     <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-sm-4">
             <h2>常用-<strong>数据集下载</strong></h2>
             <ol class="breadcrumb">
@@ -35,7 +34,7 @@
                     <h5>信息抽取</h5>
                 </div>
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="5">
                         <thead>
                         <tr>
                             <th data-toggle="true">数据集</th>
@@ -149,7 +148,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="5">
                         <thead>
                         <tr>
                             <th data-toggle="true">数据集</th>
@@ -214,10 +213,7 @@
     <script src={{ url_for('static',filename="js/content.js") }}></script>
     <script>
         $(document).ready(function () {
-
             $('.footable').footable();
-            $('.footable2').footable();
-
         });
     </script>
 {% endblock %}
