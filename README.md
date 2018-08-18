@@ -6,8 +6,8 @@
 - 实体识别
 - 关系抽取
 - 事件抽取
-https://blog.csdn.net/hqc888688/article/details/73558824/
-https://blog.csdn.net/hqc888688/article/details/73558979/
+  https://blog.csdn.net/hqc888688/article/details/73558824/
+  https://blog.csdn.net/hqc888688/article/details/73558979/
 
 
 ###### 知识图谱
@@ -36,3 +36,16 @@ https://blog.csdn.net/hqc888688/article/details/73558979/
 
 https://www.jianshu.com/p/bd15e0f50eb9
 https://www.jianshu.com/p/4f09043e22ea
+
+###### 系统平台效果
+###### 1.首页
+
+![首页](./images/1.png)
+
+###### 2.关键字抽取
+
+![首页](./images/2.png)
+
+###### 3.文本分类
+
+![首页](./images/3.png)
