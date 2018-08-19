@@ -47,6 +47,7 @@
                             <i class="glyphicon glyphicon-upload"></i>
                             <span>上传</span>
                         </button>
+                        <span>&nbsp;&nbsp;目前仅支持文件类型：<strong>txt，csv</strong>&nbsp;&nbsp;</span>
                     </div>
                 </div>
             </div>
@@ -142,7 +143,7 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>keyword</th>
+                                        <th>KeyWord</th>
                                         <th>Weight</th>
                                     </tr>
                                     </thead>
@@ -204,7 +205,7 @@ function upload_file() {
             url: "/BITIE/upload",
             type: "post",
             data: form,
-            timeout: 10000,//10s
+            timeout: 30000,//10s
             cache: false,
             processData: false,
             contentType: false,
@@ -258,12 +259,6 @@ function upload_callback(data) {
     }
 }
 
-$("#ionrange1").on("change", function () {
-    var $this = $(this),
-        value = $this.prop("value");
-    console.log("Value: " + value);
-});
-
 function process() {
     $('#mytbody').html('');
     var text = $('#input_area').val();
@@ -271,17 +266,20 @@ function process() {
     var algorithm = $('input[name="alogrithm"]:checked').val();
     var language = $('input[name="language"]:checked').val();
 
-    if (text == "") {
+    if (text == "" && input_type=='0') {
         swal({
             title: "提示信息",
             type: "warning",
             showCancelButton: false,
             confirmButtonColor: '#DD6B55',
-            text: "请输入数据！"
+            text: "请上传文件或输入数据！"
         });
     } else {
         var form = new FormData();
-        form.append("text", text)
+        if(input_type=='0')
+            form.append("text", text)//输入
+        else
+            form.append("text", '')//导入
         form.append("show_num", parseInt(show_num))
         form.append("alogrithm", algorithm)
         form.append("language", language)
@@ -291,7 +289,7 @@ function process() {
             url: "/BITIE/keyword_extract",
             type: "post",
             data: form,
-            timeout: 10000,//10s
+            timeout: 30000,//10s
             cache: false,
             processData: false,
             contentType: false,

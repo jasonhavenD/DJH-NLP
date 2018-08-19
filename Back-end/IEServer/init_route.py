@@ -12,15 +12,20 @@
 from log import Logger
 import mimetypes
 import os
-from flask import Flask, make_response, render_template, send_from_directory, request, flash, jsonify
+from flask import Flask, make_response, render_template, send_from_directory, request, flash, jsonify, abort
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-__dir__ = ['404', '500', 'main', 'index', 'keyword', 'main_keyword', 'ner', 're', 'dataset', 'download', 'upload',
-           'keyword_extract']
+__dir__ = ['404.html', '500.html', 'main.html', 'index.html', 'keyword.html', 'main_keyword.html', 'ner.html',
+           're.html', 'dataset.html', 'text_classification.html', 'topic_detection.html', 'naming_entity_recognize',
+           'download', 'upload', 'keyword_extract']
 
-logger = Logger(isclean=False).get_logger()
+'''
+系统服务管理：日志，请求装饰器监听
+'''
+
+logger = Logger(isclean=True).get_logger()
 
 
 @app.before_request
@@ -28,8 +33,8 @@ def before_request():
 	ip = request.remote_addr
 	url = request.url
 	logger.info('ip = {} , url = {}.'.format(ip, url))
-	extension=url.rsplit('.', 1)[1].lower()
-	filter_resource=set(['png','jpg','js','css'])
+	extension = url.rsplit('.', 1)[1].lower()
+	filter_resource = set(['png.', 'jpg.', 'js.', 'css.'])
 	if extension not in filter_resource:
 		logger.info('ip = {} , url = {}.'.format(ip, url))
 
@@ -72,6 +77,17 @@ def main_re():
 '''
 左侧栏目方法定义
 '''
+
+
+@app.route('/BITIE/text_classification.html')
+def text_classification():
+	'''
+	文本分类
+	:return:
+	'''
+	return render_template('text_classification.html')
+
+
 @app.route('/BITIE/keyword.html')
 def keyword():
 	'''
@@ -97,6 +113,15 @@ def re():
 	:return:
 	'''
 	return render_template('re.html')
+
+
+@app.route('/BITIE/topic_detection.html')
+def topic_detection():
+	'''
+	事件抽取
+	:return:
+	'''
+	return render_template('topic_detection.html')
 
 
 @app.route('/BITIE/dataset.html')
@@ -126,7 +151,7 @@ def index():
 
 basepath = os.path.dirname(__file__)  # 当前文件所在路径
 UPLOAD_FOLDER = 'upload'
-ALLOWED_EXTENSIONS = set(['txt', 'doc', 'csv'])
+ALLOWED_EXTENSIONS = set(['txt', 'csv'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['JSON_AS_ASCII'] = False
@@ -257,5 +282,41 @@ def keyword_extract():
 			elif input_type == 1:  # file input
 				text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
 				data['result'], data['status'] = textrank4en(text, show_num)
+
+	return jsonify(data)
+
+
+from ner import stanford_ner
+
+
+@app.route("/BITIE/naming_entity_recognize", methods=['POST'])
+def naming_entity_recognize():
+	app.logger.debug('naming_entity_recognize...')
+
+	data = {}
+	data['status'] = False
+	data['result'] = []
+	data['analysis'] = []
+
+	text = request.form.get('text', 'hello,world')
+	# show_num = int(request.form.get('show_num', 5))
+	alogrithm = request.form.get('alogrithm', 'tfidf')
+	language = request.form.get('language', 'chinese')
+	input_type = int(request.form.get('input_type', 0))
+
+	app.logger.debug("{},{},{}".format(alogrithm, input_type, language))
+
+	if alogrithm == 'stanford':
+		if input_type == 0:  # textarea input
+			data['result'], data['analysis'], data['status'] = stanford_ner(text, language)
+		elif input_type == 1:  # file input
+			text = open(os.path.join(UPLOAD_FOLDER, 'tmp.txt'), 'r').read()
+			data['result'], data['analysis'], data['status'] = stanford_ner(text, language)
+	elif alogrithm == 'crf':
+		pass
+	elif alogrithm == 'lstmcrf':
+		pass
+	elif alogrithm == 'bilstmcrf':
+		pass
 
 	return jsonify(data)

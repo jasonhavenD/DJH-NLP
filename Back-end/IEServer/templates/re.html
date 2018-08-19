@@ -4,19 +4,21 @@
 
 {% block head %}
 {{ super() }}
+<!-- 第三方插件 -->
+<link href={{ url_for('static',filename="css/plugins/footable/footable.core.css") }} rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <body class="gray-bg">
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>信息抽取-<strong>实体关系抽取</strong></h2>
+        <h2>信息抽取-<strong>关系抽取</strong></h2>
         <ol class="breadcrumb">
             <li>
                 <a href="index.html">主页</a>
             </li>
             <li>
-                <strong>实体关系抽取</strong>
+                <strong>关系抽取</strong>
             </li>
         </ol>
     </div>
@@ -28,6 +30,170 @@
 </div>
 
 <div class="wrapper wrapper-content animated fadeIn">
+    <div class="ibox-content m-b-sm border-bottom">
+        <div class="text-center p-lg">
+            <h1>训练阶段</h1>
+            <a href="dataset.html">
+                <button class="btn btn-outline btn-info">
+                    <i class="fa fa-download"></i>
+                    下载数据集
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>数据说明</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="5">
+                        <thead>
+                        <tr>
+                            <th data-toggle="true">数据集</th>
+                            <th>时间</th>
+                            <th data-hide="all">公司</th>
+                            <th data-hide="all">参数</th>
+                            <th data-hide="all">采购数量</th>
+                            <th data-hide="all">日期</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2015韩国童装韩版牛仔童短裤</td>
+                            <td>0800 051213</td>
+                            <td>深圳市有大福实业有限公司</td>
+                            <td><span class="pie">0.52/1.561</span></td>
+                            <td>200</td>
+                            <td>2015.09.10</td>
+                            <td><a href="#"><i class="fa fa-check text-navy"></i> 下载</a></td>
+                        </tr>
+                        <tr>
+                            <td>300米速进口日本原丝耐磨</td>
+                            <td>0500 780909</td>
+                            <td>广州重兑诺贸易有限公司</td>
+                            <td><span class="pie">6,9</span></td>
+                            <td>400</td>
+                            <td>2015.10.14</td>
+                            <td><a href="#"><i class="fa fa-check text-navy"></i> 下载</a></td>
+                        </tr>
+                        <tr>
+                            <td>正品印度红油</td>
+                            <td>0800 051213</td>
+                            <td>深圳市有大福实业有限公司</td>
+                            <td><span class="pie">0.52/1.561</span></td>
+                            <td>200</td>
+                            <td>2015.09.10</td>
+                            <td><a href="#"><i class="fa fa-check text-navy"></i> 下载</a></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <ul class="pagination pull-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>算法说明</h5>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
+                        <thead>
+                        <tr>
+                            <th data-toggle="true">数据集</th>
+                            <th>时间</th>
+                            <th data-hide="all">公司</th>
+                            <th data-hide="all">参数</th>
+                            <th data-hide="all">采购数量</th>
+                            <th data-hide="all">日期</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2015韩国童装韩版牛仔童短裤</td>
+                            <td>0800 051213</td>
+                            <td>深圳市有大福实业有限公司</td>
+                            <td><span class="pie">0.52/1.561</span></td>
+                            <td>200</td>
+                            <td>2015.09.10</td>
+                            <td><a href="#"><i class="fa fa-check text-navy"></i> 下载</a></td>
+                        </tr>
+                        <tr>
+                            <td>300米速进口日本原丝耐磨</td>
+                            <td>0500 780909</td>
+                            <td>广州重兑诺贸易有限公司</td>
+                            <td><span class="pie">6,9</span></td>
+                            <td>400</td>
+                            <td>2015.10.14</td>
+                            <td><a href="#"><i class="fa fa-check text-navy"></i> 下载</a></td>
+                        </tr>
+                        <tr>
+                            <td>正品印度红油</td>
+                            <td>0800 051213</td>
+                            <td>深圳市有大福实业有限公司</td>
+                            <td><span class="pie">0.52/1.561</span></td>
+                            <td>200</td>
+                            <td>2015.09.10</td>
+                            <td><a href="#"><i class="fa fa-check text-navy"></i> 下载</a></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <ul class="pagination pull-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="row">
+        </div>
+            <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>数据分析</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="echarts" id="echarts-pie1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>模型分析</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="echarts" id="echarts-bar1"></div>
+                </div>
+            </div>
+
+    </div>
+
+    <div class="ibox-content m-b-sm border-bottom">
+        <div class="text-center p-lg">
+            <h1>测试阶段</h1>
+            <span><strong>第一步：</strong>文件上传或输入数据<strong><i
+                    class="fa fa-arrow-right"></i>第二步：</strong>选择语种类型<strong><i
+                    class="fa fa-arrow-right"></i>第三步：</strong>选择实现算法<strong><i
+                    class="fa fa-arrow-right"></i>第四步：</strong>处理</span>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
@@ -45,6 +211,7 @@
                             <i class="glyphicon glyphicon-upload"></i>
                             <span>上传</span>
                         </button>
+                        <span>&nbsp;&nbsp;目前仅支持文件类型：<strong>txt，csv</strong>&nbsp;&nbsp;</span>
                     </div>
                 </div>
             </div>
@@ -65,40 +232,55 @@
                         <textarea id="input_area" class="form-control" placeholder="输入文本数据......"
                                   style="margin: 0px -2px 0px 0px;height: 150px;resize: none"></textarea>
 
-                        <div class="hr-line-dashed"></div>
+                        <!--<div class="hr-line-dashed"></div>
                         <h3>
                             设置结果显示数目
                         </h3>
-                        <input id="ionrange1"></input>
+                        <input id="ionrange1"></input>-->
                         <div class="hr-line-dashed"></div>
                         <h3>
                             设置语种类型
                         </h3>
                         <div class="form-group">
-                            <label>
-                                <input type="radio" checked name="language" value="chinese"> <i></i> 中文</label>
-                            <label>
-                                <input type="radio" name="language" value="english"> <i></i>
-                                英文</label>
+                            <div class="radio radio-info radio-inline">
+                                <input id="zh1" type="radio" checked value="chinese" name="language"
+                                       class="checkbox checkbox-success"><label for="zh1"><strong>中文</strong></label>
+                            </div>
+                            <span>&nbsp;&nbsp;</span>
+                            <div class="radio radio-info radio-inline">
+                                <input id="en1" type="radio" value="english" name="language"
+                                       class="checkbox checkbox-success"><label for="en1"><strong>英文</strong> </label>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <h3>
+                            设置实现算法
+                        </h3>
+                        <div class="form-group">
+                            <div class="radio radio-info radio-inline">
+                                <input id="stanford" type="radio" checked value="stanford" name="alogrithm"
+                                       class="checkbox checkbox-success"><label for="stanford"><strong>StanfordNLP</strong>
+                            </label>
+                            </div>
+                            <span>&nbsp;&nbsp;</span>
+                            <div class="radio radio-info radio-inline">
+                                <input id="crf" type="radio" value="crf" name="alogrithm"
+                                       class="checkbox"><label for="crf"><strong>CRF</strong> </label>
+                            </div>
+                            <span>&nbsp;&nbsp;</span>
+                            <div class="radio radio-info radio-inline">
+                                <input id="lstmcrf" type="radio" value="lstmcrf" name="alogrithm"
+                                       class="checkbox"><label for="lstmcrf"><strong>LSTM-CRF</strong> </label>
+                            </div>
+                            <div class="radio radio-info radio-inline">
+                                <input id="bilstmcrf" type="radio" value="bilstmcrf" name="alogrithm"
+                                       class="checkbox"><label for="bilstmcrf"><strong>BiLSTM-CRF</strong> </label>
+                            </div>
                         </div>
                     </div>
-                    <h3>
-                        设置实现算法
-                    </h3>
-                    <div class="form-group">
-
-                        <label>
-                            <input type="radio" checked value="tfidf" name="alogrithm"> <i></i> TF-IDF</label>
-                        <label>
-                            <input type="radio" disabled name="alogrithm" value="textrank"> <i></i>
-                            TextRank（禁用）</label>
-                        <label>
-                            <input type="radio" disabled name="alogrithm" value="lad"> <i></i> LDA（禁用）</label>
-                    </div>
+                    <a onclick="process();" style="margin-right: 20px;" class="btn btn-primary pull-right">开始处理</a>
+                    <p>&nbsp;</p>
                 </div>
-                <a onclick="process();" style="margin-right: 20px;" class="btn btn-primary pull-right">开始处理</a>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
             </div>
         </div>
     </div>
@@ -129,200 +311,481 @@
                 </div>
                 <div class="ibox-content">
                     <div class="page-container">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-content">
-                                <table class="table table-bordered">
+                            <div id="myoutput" class="ibox-content">
+                                <table id="mytable" class="footable table table-bordered" data-page-size="10">
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>keyword</th>
-                                        <th>Weight</th>
+                                        <th>Entity</th>
+                                        <th>Entity</th>
+                                        <th>Relation</th>
                                     </tr>
                                     </thead>
                                     <tbody id="mytbody">
+                                    <tr>
+                                        <td>暂无数据</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                            <ul class="pagination pull-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="myoutput_echarts" class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>结果分析</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="echarts" id="echarts-bar-chart"></div>
+                </div>
+            </div>
+        </div>
+            <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>结果分析</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="echarts" id="echarts-pie-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </div>
 </body>
 {% endblock %}
 {% block footer %}
 {{ super() }}
-<script>
-    var input_type = 0 //0: textarea,1:file
 
-    function upload_file() {
-        var files = $('input[name="myfile"]').prop('files');//获取到文件列表
-        var file = files[0];
-        if (file == undefined) {
-            swal({
-                title: "提示信息",
-                type: "warning",
-                showCancelButton: false,
-                confirmButtonColor: '#DD6B55',
-                text: "第一步：先选择一个文本文件！"
-            });
-        }
-        else {
-            var form = new FormData();
-            form.append('myfile', file);
-            $.ajax({
-                url: "/BITIE/upload",
-                type: "post",
-                data: form,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function (data) {
-                    upload_callback(data);
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    swal({
-                        title: "错误信息",
-                        type: "error",
-                        showCancelButton: false,
-                        confirmButtonColor: '#DD6B55',
-                        text: "status:" + XMLHttpRequest.status + " textinfo:" + textStatus
-                    });
-                }
-            });
-        }
+
+<!--数据下载-->
+<script src={{ url_for('static',filename="js/plugins/footable/footable.all.min.js") }}></script>
+
+<script >
+var input_type = 0 //0: textarea,1:file
+
+window.onload = function () {
+    $('.footable').footable();
+}
+
+function upload_file() {
+    var files = $('input[name="myfile"]').prop('files');//获取到文件列表
+    var file = files[0];
+    if (file == undefined) {
+        swal({
+            title: "提示信息",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: "第一步：先选择一个文本文件！"
+        });
     }
-
-    function upload_callback(data) {
-        if (data['status']) {
-            swal({
-                title: "上传成功",
-                type: "success",
-                showCancelButton: false,
-                showConfirmButton: false,
-                timer: 900
-            })
-            //阻塞，同步
-            setTimeout(function () {
-                //控制前台展示的文本数量
-                if (data['text'].length > 1000) {
-                    show_text = data['text'].slice(0, 1000)
-                    show_text += "\n......未完全显示"
-                } else {
-                    show_text = data['text']
-                }
-                $('#input_area').val(show_text);
-            }, 1000);
-            input_type = 1;
-
-        } else {
-            swal({
-                title: "错误信息",
-                type: "error",
-                showCancelButton: false,
-                confirmButtonColor: '#DD6B55',
-                text: data['desc']
-            });
-        }
+    else {
+        var form = new FormData();
+        form.append('myfile', file);
+        $.ajax({
+            url: "/BITIE/upload",
+            type: "post",
+            data: form,
+            timeout: 30000,//30s
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                upload_callback(data);
+            },
+            error: function (XMLHttpRequest, status) { //求完成后最终执行参数
+                swal({
+                    title: "错误信息",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: '#DD6B55',
+                    text: "status:" + XMLHttpRequest.status + " textinfo:" + status
+                });
+                $("#myloading").hide();
+            }
+        });
     }
+}
 
-    $("#ionrange1").on("change", function () {
-        var $this = $(this),
-            value = $this.prop("value");
-        console.log("Value: " + value);
-    });
+function upload_callback(data) {
+    if (data['status']) {
+        swal({
+            title: "上传成功",
+            type: "success",
+            showCancelButton: false,
+            showConfirmButton: false,
+            timer: 900
+        })
+        //阻塞，同步
+        setTimeout(function () {
+            //控制前台展示的文本数量
+            if (data['text'].length > 1000) {
+                show_text = data['text'].slice(0, 1000)
+                show_text += "\n......未完全显示......"
+            } else {
+                show_text = data['text']
+            }
+            $('#input_area').val(show_text);
+        }, 1000);
+        input_type = 1;
 
-    function process() {
-        $('#mytbody').html('');
-        var text = $('#input_area').val();
-        var show_num = $("#ionrange1").val();
-        var algorithm = $('input[name="alogrithm"]:checked').val();
-        var language = $('input[name="language"]:checked').val();
-
-        if (text == "") {
-            swal({
-                title: "提示信息",
-                type: "warning",
-                showCancelButton: false,
-                confirmButtonColor: '#DD6B55',
-                text: "请输入数据！"
-            });
-        } else {
-            var form = new FormData();
-            form.append("text", text)
-            form.append("show_num", parseInt(show_num))
-            form.append("alogrithm", algorithm)
-            form.append("language", language)
-            form.append("input_type", input_type)
-
-            $.ajax({
-                url: "/BITIE/keyword_extract",
-                type: "post",
-                data: form,
-                cache: false,
-                processData: false,
-                contentType: false,
-                beforeSend: function () {
-                    $("#myloading").show();
-                },
-                success: function (data) {
-                    process_callback(data);
-                    $("#myloading").hide();
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    swal({
-                        title: "错误信息",
-                        type: "error",
-                        showCancelButton: false,
-                        confirmButtonColor: '#DD6B55',
-                        text: "status:" + XMLHttpRequest.status + " textinfo:" + textStatus
-                    });
-                    $("#myloading").hide();
-                }
-            });
-        }
+    } else {
+        swal({
+            title: "错误信息",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: data['desc']
+        });
     }
+}
 
-    function process_callback(data) {
-        var status = data['status']
-        result = data['result']
-        if (status) {
-            show_output(result)
-        } else {
-            swal({
-                title: "错误信息",
-                type: "error",
-                showCancelButton: false,
-                confirmButtonColor: '#DD6B55',
-                text: '请等待工作人员调试，服务器处理出错了！'
-            });
-        }
+function process() {
+    $('#mytbody').html('');
+    var text = $('#input_area').val();
+    var algorithm = $('input[name="alogrithm"]:checked').val();
+    var language = $('input[name="language"]:checked').val();
+
+
+    if (text == "" && input_type=='0') {
+        swal({
+            title: "提示信息",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: "请上传文件或输入数据！"
+        });
+    } else {
+        var form = new FormData();
+        if(input_type=='0')
+            form.append("text", text)//输入
+        else
+            form.append("text", '')//导入
+        form.append("alogrithm", algorithm)
+        form.append("language", language)
+        form.append("input_type", input_type)
+
+        $.ajax({
+            url: "/BITIE/naming_entity_recognize",
+            type: "post",
+            data: form,
+            timeout: 30000,//30s
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $("#myloading").show();
+            },
+            success: function (data) {
+                $("#myloading").hide();
+                process_callback(data);
+            },
+            error: function (XMLHttpRequest, status) { //求完成后最终执行参数
+                $("#myloading").hide();
+                swal({
+                    title: "错误信息",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: '#DD6B55',
+                    text: "status:" + XMLHttpRequest.status + " textinfo:" + status
+                });
+            }
+        });
     }
+}
 
-    function show_output(data) {
-        //后端排序
-        var html = "";
-        if (data.length == 0) {
+function process_callback(data) {
+    var status = data['status']
+    var result = data['result']
+    if (status) {
+        var flag=show_output(result);
+        if(flag)update_output_echarts(data['analysis'])
+    } else {
+        swal({
+            title: "错误信息",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: '不好意思，服务器出故障了！'
+        });
+    }
+}
+
+function show_output(data) {
+    if (typeof (data) != "object" || data == null || data == undefined) {
+        swal({
+            title: "错误信息",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: '输出结果类型有问题！'
+        });
+        return false;
+    }
+    //成功之后
+    input_type = 0;
+    $('#input_area').val('');
+    var html = "";
+    if (data.length == 0) {
+        html += "<tr>\n" +
+            "<td>暂无数据</td>\n" +
+            "<td></td>\n" +
+            "<td></td>\n" +
+            "</tr>"
+    } else {
+        $.each(data, function (i, v) {
             html += "<tr>\n" +
-                "<td>暂无数据</td>\n" +
-                "<td></td>\n" +
-                "<td></td>\n" +
+                "<td>" + parseInt(i + 1) + "</td>\n" +
+                "<td>" + v.toString().split(',')[0] + "</td>\n" +
+                "<td>" + v.toString().split(',')[1] + "</td>\n" +
                 "</tr>"
-        } else {
-            $.each(data, function (i, v) {
-                html += "<tr>\n" +
-                    "<td>" + parseInt(i+1) + "</td>\n" +
-                    "<td>" + v.toString().split(',')[0] + "</td>\n" +
-                    "<td>" + v.toString().split(',')[1] + "</td>\n" +
-                    "</tr>"
-            });
-        }
-        $('#mytbody').append(html);
+        });
     }
+    $('#mytbody').append(html);
+    return true;
+}
+
+function update_output_echarts(data){
+    var pie_data=[];
+    var bar_data=[];
+    var legend_data=[];
+    for (var key in data) {
+        legend_data.push(key);
+        bar_data.push(data[key]);
+        pie_data.push({name:key,value:data[key]});
+    }
+
+    var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
+    var pieoption = {
+        title : {
+            text: '实验结果分析',
+            subtext: '实体类型占比',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:legend_data
+        },
+        calculable : true,
+        series : [
+            {
+                name:'实体类型',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:pie_data
+            }
+        ]
+    };
+    pieChart.setOption(pieoption);
+    $(window).resize(pieChart.resize);
+
+    var barChart = echarts.init(document.getElementById("echarts-bar-chart"));
+    var baroption = {
+        title: {
+            text: '实体识别结果分析'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: legend_data
+        },
+        grid: {
+            x: 30,
+            x2: 40,
+            y2: 24
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: legend_data
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '频数',
+                type: 'bar',
+                data: bar_data,
+                markPoint: {
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}
+                    ]
+                },
+            }
+        ]
+    };
+    barChart.setOption(baroption);
+    $(window).resize(barChart.resize);
+
+}
+
+
+
+<!--初始化Echarts-->
+$(function () {
+    //初始化echarts
+    var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
+    var pieoption = {
+        series: [
+            {
+                name: '频数',
+                type: 'bar',
+                data: []
+            }
+        ]
+    }
+    pieChart.setOption(pieoption);
+    $(window).resize(pieChart.resize);
+
+    var barChart = echarts.init(document.getElementById("echarts-bar-chart"));
+    var baroption = {
+        series: [
+            {
+                name: '频数',
+                type: 'bar',
+                data: []
+            }
+        ]
+    }
+    barChart.setOption(baroption);
+    $(window).resize(barChart.resize);
+
+
+    //初始化训练阶段echarts
+    var barChart = echarts.init(document.getElementById("echarts-bar1"));
+        var baroption = {
+            title: {
+                text: '某地区蒸发量和降水量'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['蒸发量', '降水量']
+            },
+            grid: {
+                x: 30,
+                x2: 40,
+                y2: 24
+            },
+            calculable: true,
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: '蒸发量',
+                    type: 'bar',
+                    data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+                    markPoint: {
+                        data: [
+                            {type: 'max', name: '最大值'},
+                            {type: 'min', name: '最小值'}
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'}
+                        ]
+                    }
+                },
+                {
+                    name: '降水量',
+                    type: 'bar',
+                    data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+                    markPoint: {
+                        data: [
+                            {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183, symbolSize: 18},
+                            {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3}
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'}
+                        ]
+                    }
+                }
+            ]
+        };
+    barChart.setOption(baroption);
+    $(window).resize(barChart.resize);
+
+
+    var pieChart = echarts.init(document.getElementById("echarts-pie1"));
+    var pieoption = {
+        title : {
+            text: '某站点用户访问来源',
+            subtext: '纯属虚构',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        calculable : true,
+        series : [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ]
+            }
+        ]
+    };
+    pieChart.setOption(pieoption);
+    $(window).resize(pieChart.resize);
+
+});
 
 
 </script>
-
 {% endblock %}

@@ -88,6 +88,4 @@ class Logger():
 
 if __name__ == '__main__':
 	logger = Logger(True).get_logger()
-	logger.info("info")
-	logger.debug("debug")
-	logger.error("error")
+	logger.info('hello,logs')
