@@ -1,0 +1,81 @@
+{% extends "basic.html" %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <body>
+    <div class="wrapper wrapper-content  animated fadeInRight article">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>信息抽取-<strong>文本分类</strong></h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="index.html">主页</a>
+                    </li>
+                    <li>
+                        <strong>文本分类</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-8">
+                <div class="title-action">
+                    <a href="main.html" class="btn btn-primary">返回主页</a>
+                </div>
+            </div>
+    </div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="text-center article-title">
+                            <h1>
+                                文本分类技术
+                            </h1>
+                        </div>
+                        <p>关键词是指能够反映文本语料主题的词语或短语。在实际业务中，单个词语的意义不大，主要是短语，而且大多数关键词是名词短语。</p>
+                        <ul>
+                        <li>1.一段语料中的关键词在该段语料中可能频繁出现，而在其他语料中出现次数较少。</li>
+                        <li>2.针对于总分总结构的文本（如新闻报道），出现在文章首部和尾部位置的词语成为关键词的可能性要远大于只出现在文章中部的词语。</li>
+                        <li>3.在文本中反复出现且关键词附近出现关键词的概率非常大</li>
+                        <li>4.在文本中反复出现且左右出现不同词语的概率非常大</li>
+                        </ul>
+                        <h4><a id="user-content-1tf-idf" class="anchor" aria-hidden="true" href="#1tf-idf"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.TF-IDF</h4>
+                        <ul>
+                            <li >Term Frequency -  Inverse Document Frequency的缩写,即“词频-逆文本频率”。它由两部分组成，TF和IDF。</li>
+                            <li>TF描述文本中各个词汇的频率，并作为文本特征</li>
+                            <li>IDF就是来帮助我们来反应这个词的重要性的，概括来讲， IDF反应了一个词在所有文本中出现的频率，如果一个词在很多的文本中出现，那么它的IDF值应该低，比如上文中的“to”。而反过来如果一个词在比较少的文本中出现，那么它的IDF值应该高。比如一些专业的名词如“Machine Learning”。这样的词IDF值应该高。</li>
+                            <li>词频TF=某词在文章中出现频率/文章总词汇数</li>
+                            <li>逆文档频率IDF=log(语料库文章总数/出现某词汇的文章数)（注意生僻词的出现会导致0，可以做平滑处理）</li>
+                            <li>TF-IDF=TF*IDF</li>
+                        </ul>
+                        <h4><a id="user-content-2textrank" class="anchor" aria-hidden="true" href="#2textrank"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.TextRank</h4>
+                        <ul>
+                            <li>一种用来做关键词提取的算法，也可以用于提取短语和自动摘要</li>
+                            <li>TextRank是基于PageRank的,<strong>用于为文本生成关键字和摘要</strong></li>
+                            <li>生成关键字：单词作为节点，生成摘要，句子作为节点</li>
+                            <li>一种用于文本的基于图的排序算法。通过把文本分割成若干组成单元(单词、句子)并建立图模型, 利用投票机制对文本中的重要成分进行排序, 仅利用单篇文档本身的信息即可实现关键词提取、文摘。</li>
+                        </ul>
+                        <h6>2.1 PageRank</h6>
+                        <ul>
+                            <li>PageRank最开始用来计算网页的重要性。整个www可以看作一张有向图图，节点是网页。如果网页A存在到网页B的链接，那么有一条从网页A指向网页B的有向边。</li>
+                            <li><a href="https://www.cnblogs.com/xueyinzhe/p/7101295.html" rel="nofollow">https://www.cnblogs.com/xueyinzhe/p/7101295.html</a></li>
+                        </ul>
+                        <h6>2.2 TextRank</h6>
+                        <ul>
+                            <li>Textrank：是Pagerank的一个引申。该算法中，将文本中每个词看成是一个page，文本中某一个词语与之周围N个词存在一个link，然后在这个网络中使用pagerank算出每个词语的权值，把权值最高的几个词作为关键词（在FudanNLP和SnowNLP中有实现）。textrank有一定的局限性，抽取出来的词也是偏向于是高频词，因为高频词才更有可能和其他的词组成link，进而相应的词或短语的权重较高，最终形成关键词。</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </body>
+{% endblock %}
+{% block footer %}
+    {{ super() }}
+{% endblock %}

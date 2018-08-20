@@ -14,6 +14,7 @@
     <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
+    <link href="css/build.css" rel="stylesheet">
     <link href="css/style.css?v=4.1.0" rel="stylesheet">
 
     <!--设置标签图标-->
@@ -125,6 +126,7 @@
                             设置实现算法
                         </h5>
                         <div class="form-group">
+                        	<div class="radio radio-success">
 
                             <label>
                                 <input type="radio" checked value="tfidf" name="alogrithm"> <i></i> TF-IDF</label>
@@ -134,8 +136,17 @@
                             <label>
                                 <input type="radio" disabled name="alogrithm" value="lad"> <i></i> LDA（禁用）</label>
                         </div>
+                        </div>
                     </div>
-
+					<div class="hr-line-dashed"></div>
+                    <div class="radio radio-info radio-inline">
+		                        <input type="radio" id="inlineRadio1" value="option1" class="checkbox checkbox-success" name="radioInline" checked>
+		                        <label for="inlineRadio1"> Inline One </label>
+		                    </div>
+		                    <div class="radio radio-inline">
+		                        <input type="radio" id="inlineRadio2" value="option2" class="checkbox checkbox-success" name="radioInline">
+		                        <label for="inlineRadio2"> Inline Two </label>
+		                    </div>
                     <div class="hr-line-dashed"></div>
                     <a href="#" class="btn btn-primary pull-right">开始处理</a>
                     <p>&nbsp;</p>

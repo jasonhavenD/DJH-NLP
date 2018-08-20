@@ -17,9 +17,10 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-__dir__ = ['404.html', '500.html', 'main.html', 'index.html', 'keyword.html', 'main_keyword.html', 'ner.html',
-           're.html', 'dataset.html', 'text_classification.html', 'topic_detection.html', 'naming_entity_recognize',
-           'download', 'upload', 'keyword_extract']
+__dir__ = ['404.html', '500.html', 'main.html', 'index.html', 'keyword.html', 'main_keyword.html', 'main_word_embedding.html','ner.html',
+           're.html', 'dataset.html', 'text_classification.html', 'topic_detection.html', 'word_embedding.html',
+           'naming_entity_recognize',
+           'download', 'upload', 'keyword_extract','word_similarity','word_most_similar']
 
 '''
 系统服务管理：日志，请求装饰器监听
@@ -59,6 +60,11 @@ def main():
 	return render_template('main.html')
 
 
+@app.route('/BITIE/main_word_embedding.html')
+def main_word_embedding():
+	return render_template('main_word_embedding.html')
+
+
 @app.route('/BITIE/main_keyword.html')
 def main_keyword():
 	return render_template('main_keyword.html')
@@ -74,9 +80,29 @@ def main_re():
 	return render_template('main_re.html')
 
 
+@app.route('/BITIE/main_topic.html')
+def main_topic():
+	return render_template('main_topic.html')
+
+
+@app.route('/BITIE/main_text.html')
+def main_text():
+	return render_template('main_text.html')
+	return render_template('main_re.html')
+
+
 '''
 左侧栏目方法定义
 '''
+
+
+@app.route('/BITIE/word_embedding.html')
+def word_embedding():
+	'''
+	文本分类
+	:return:
+	'''
+	return render_template('word_embedding.html')
 
 
 @app.route('/BITIE/text_classification.html')
@@ -286,6 +312,9 @@ def keyword_extract():
 	return jsonify(data)
 
 
+'''
+命名实体识别
+'''
 from ner import stanford_ner
 
 
@@ -319,4 +348,38 @@ def naming_entity_recognize():
 	elif alogrithm == 'bilstmcrf':
 		pass
 
+	return jsonify(data)
+
+
+'''
+词向量
+'''
+from my_word_embedding import similarity, most_similar
+
+
+@app.route("/BITIE/word_embedding/similarity",methods=['POST'])
+def word_similarity():
+	app.logger.debug('similarity...')
+	data = {}
+	data['result'] = []
+	data['status'] = False
+
+	word1 = request.form.get('word1', '你')
+	word2 = request.form.get('word2', '我')
+
+	data['result'], data['status'] = similarity(word1, word2)
+	return jsonify(data)
+
+
+@app.route("/BITIE/word_embedding/most_similar",methods=['POST'])
+def word_most_similar():
+	app.logger.debug('most_similar...')
+	data = {}
+	data['result'] = []
+	data['status'] = False
+
+	word = request.form.get('word', '你')
+	show_num = int(request.form.get('show_num', 5))
+
+	data['result'], data['status'] = most_similar(word,topn=show_num)
 	return jsonify(data)

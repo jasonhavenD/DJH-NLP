@@ -1,0 +1,296 @@
+{% extends "basic.html" %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+{{ super() }}
+<!-- 第三方插件 -->
+<link href={{ url_for('static',filename="css/plugins/footable/footable.core.css") }} rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<body class="gray-bg">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>信息抽取-<strong>维基百科词向量</strong></h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">主页</a>
+            </li>
+            <li>
+                <strong>维基百科词向量</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="main.html" class="btn btn-primary">打开主页</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox-title">
+                <h5>1.计算相似度</h5>
+            </div>
+            <div class="ibox-content">
+                <form role="form" class="form-inline">
+                    <div class="form-group">
+                        <label for="word1" class="sr-only">word1</label>
+                        <input placeholder="请输入要计算的关键词" id="word1" class="form-control">
+                    </div>
+                    <span>&nbsp;&nbsp;</span>
+                    <div class="form-group">
+                        <label for="word2" class="sr-only">word2</label>
+                        <input placeholder="请输入要计算的关键词" id="word2" class="form-control">
+                    </div>
+                    <a onclick='similarity()' class="btn btn-primary" type="submit">计算</a>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="ibox-title">
+                <h5>计算结果</h5>
+            </div>
+            <div class="ibox-content">
+                <form role="form" class="form-inline">
+                    <div class="form-group">
+                        <label for="output" class="sr-only">output</label>
+                        <input placeholder="显示计算结果" id="output" class="form-control">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox-title">
+                <h5>2.查询同义词</h5>
+            </div>
+            <div class="ibox-content">
+                <h3>
+                            设置结果显示数目
+                </h3>
+                <input id="ionrange1"></input>
+                <div class="hr-line-dashed"></div>
+                <form role="form" class="form-inline">
+                    <h3>
+                            输入数据
+                    </h3>
+                    <div class="form-group">
+                        <label for="word3" class="sr-only">word3</label>
+                        <input placeholder="请输入要查询的关键词" id="word3" class="form-control">
+                    </div>
+                    <a onclick='most_similar()'  class="btn btn-primary" type="submit">查询</a>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>查询结果</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="page-container">
+                        <div class="ibox float-e-margins">
+                            <div id="myoutput" class="ibox-content">
+                                <table id="mytable" class="footable table table-bordered" data-page-size="10">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>KeyWord</th>
+                                        <th>Weight</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="mytbody">
+                                    <tr>
+                                        <td>暂无数据</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                            <ul class="pagination pull-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}
+{% block footer %}
+{{ super() }}
+
+
+<!--数据下载-->
+<script src={{ url_for('static',filename="js/plugins/footable/footable.all.min.js") }}></script>
+
+<script>
+window.onload = function () {
+    $('.footable').footable();
+}
+
+function similarity() {//计算
+    var word1= $('#word1').val();
+    var word2 = $('#word2').val();
+
+    if (word1 == "" || word2 == '') {
+        swal({
+            title: "提示信息",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: "请输入数据！"
+        });
+    } else {
+        var form = new FormData();
+        form.append("word1", word1)
+        form.append("word2", word2)
+
+        $.ajax({
+            url: "/BITIE/word_embedding/similarity",
+            type: "post",
+            data: form,
+            timeout: 30000,//10s
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                similarity_callback(data);
+            },
+            error: function (XMLHttpRequest, status) { //求完成后最终执行参数
+                swal({
+                    title: "错误信息",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: '#DD6B55',
+                    text: "status:" + XMLHttpRequest.status + " textinfo:" + status
+                });
+            }
+        });
+    }
+}
+
+
+function most_similar() {//查询
+    var word= $('#word3').val();
+    var show_num = $("#ionrange1").val();
+    if (word == "") {
+        swal({
+            title: "提示信息",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: "请输入数据！"
+        });
+    } else {
+        var form = new FormData();
+        form.append("show_num", show_num);
+        form.append("word", word);
+
+        $.ajax({
+            url: "/BITIE/word_embedding/most_similar",
+            type: "post",
+            data: form,
+            timeout: 30000,//10s
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                most_similar_callback(data);
+            },
+            error: function (XMLHttpRequest, status) { //求完成后最终执行参数
+                swal({
+                    title: "错误信息",
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: '#DD6B55',
+                    text: "status:" + XMLHttpRequest.status + " textinfo:" + status
+                });
+            }
+        });
+    }
+}
+
+function similarity_callback(data) {
+    var status = data['status']
+    if (status) {
+        $('#output').val(data['result']);
+    } else {
+        swal({
+            title: "错误信息",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: '不好意思，服务器出故障了！'
+        });
+    }
+}
+
+function most_similar_callback(data) {
+    var status = data['status']
+    if (status) {
+        show_output(data['result']);
+    } else {
+        swal({
+            title: "错误信息",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: '不好意思，服务器出故障了！'
+        });
+    }
+}
+
+function show_output(data) {
+    if (typeof (data) != "object" || data == null || data == undefined) {
+        swal({
+            title: "错误信息",
+            type: "error",
+            showCancelButton: false,
+            confirmButtonColor: '#DD6B55',
+            text: '输出结果类型有问题！'
+        });
+        return;
+    }
+    //成功之后
+    var html = "";
+    if (data.length == 0) {
+        html += "<tr>\n" +
+            "<td>暂无数据</td>\n" +
+            "<td></td>\n" +
+            "<td></td>\n" +
+            "</tr>"
+    } else {
+        $.each(data, function (i, v) {
+            html += "<tr>\n" +
+                "<td>" + parseInt(i + 1) + "</td>\n" +
+                "<td>" + v.toString().split(',')[0] + "</td>\n" +
+                "<td>" + v.toString().split(',')[1] + "</td>\n" +
+                "</tr>"
+        });
+    }
+    $('#mytbody').html('');
+    $('#mytbody').append(html);
+}
+
+</script>
+{% endblock %}
