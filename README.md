@@ -1,13 +1,12 @@
-#### 面向特定领域的跨语言信息抽取和知识图谱构建技术验证平台
-#### Domain-specific cross-language information extraction and knowledge graph mapping construction technology verification platform
-
 ###### 信息抽取
 - 关键字提取
 - 文本分类
 - 实体识别
 - 关系抽取
 - 事件抽取
+
   https://blog.csdn.net/hqc888688/article/details/73558824/
+  
   https://blog.csdn.net/hqc888688/article/details/73558979/
 
 
