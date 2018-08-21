@@ -303,6 +303,28 @@
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeIn">
+    <div id="myoutput_echarts" class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>结果分析</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="echarts" id="echarts-bar-chart"></div>
+                </div>
+            </div>
+        </div>
+            <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>结果分析</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="echarts" id="echarts-pie-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
@@ -341,28 +363,7 @@
             </div>
         </div>
     </div>
-    <div id="myoutput_echarts" class="row">
-        <div class="col-sm-6">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>结果分析</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="echarts" id="echarts-bar-chart"></div>
-                </div>
-            </div>
-        </div>
-            <div class="col-sm-6">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>结果分析</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="echarts" id="echarts-pie-chart"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     </div>
 </div>
 </body>
@@ -483,7 +484,7 @@ function process() {
             url: "/BITIE/naming_entity_recognize",
             type: "post",
             data: form,
-            timeout: 30000,//30s
+            timeout: 50000,//50s
             cache: false,
             processData: false,
             contentType: false,

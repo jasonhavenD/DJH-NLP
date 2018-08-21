@@ -77,18 +77,33 @@
                 </h3>
                 <input id="ionrange1"></input>
                 <div class="hr-line-dashed"></div>
-                <form role="form" class="form-inline">
                     <h3>
                             输入数据
                     </h3>
                     <div class="form-group">
                         <label for="word3" class="sr-only">word3</label>
-                        <input placeholder="请输入要查询的关键词" id="word3" class="form-control">
+                        <input placeholder="请输入要查询的关键词" id="word3" class="form-control"  style="width: 12%;display: inline">
+                        <a onclick='most_similar()'  class="btn btn-primary" type="submit">查询</a>
                     </div>
-                    <a onclick='most_similar()'  class="btn btn-primary" type="submit">查询</a>
-                </form>
+
             </div>
 
+        </div>
+    </div>
+</div>
+<div id="myloading" hidden class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h3 style="color: #7266ba">
+                        正在处理,请稍后......
+                    </h3>
+                    <div class="page-container">
+                        <center><img src={{url_for('static',filename="img/loading.svg")}}/></center>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -148,6 +163,23 @@ window.onload = function () {
     $('.footable').footable();
 }
 
+$('#word1').on('keypress',function(event){
+        if(event.keyCode == 13) {
+           similarity();
+        }
+});
+
+$('#word2').on('keypress',function(event){
+        if(event.keyCode == 13) {
+           similarity();
+        }
+});
+$('#word3').on('keypress',function(event){
+        if(event.keyCode == 13) {
+           most_similar();
+        }
+});
+
 function similarity() {//计算
     var word1= $('#word1').val();
     var word2 = $('#word2').val();
@@ -192,7 +224,6 @@ function similarity() {//计算
 
 function most_similar() {//查询
     var word= $('#word3').val();
-    var show_num = $("#ionrange1").val();
     if (word == "") {
         swal({
             title: "提示信息",
@@ -202,6 +233,7 @@ function most_similar() {//查询
             text: "请输入数据！"
         });
     } else {
+        var show_num = $("#ionrange1").val();
         var form = new FormData();
         form.append("show_num", show_num);
         form.append("word", word);
@@ -214,10 +246,15 @@ function most_similar() {//查询
             cache: false,
             processData: false,
             contentType: false,
+            beforeSend: function () {
+                $("#myloading").show();
+            },
             success: function (data) {
+                $("#myloading").hide();
                 most_similar_callback(data);
             },
             error: function (XMLHttpRequest, status) { //求完成后最终执行参数
+                $("#myloading").hide();
                 swal({
                     title: "错误信息",
                     type: "error",
@@ -240,7 +277,7 @@ function similarity_callback(data) {
             type: "error",
             showCancelButton: false,
             confirmButtonColor: '#DD6B55',
-            text: '不好意思，服务器出故障了！'
+            text: '词库中不存在该关键词：'+data['result']
         });
     }
 }
@@ -255,7 +292,7 @@ function most_similar_callback(data) {
             type: "error",
             showCancelButton: false,
             confirmButtonColor: '#DD6B55',
-            text: '不好意思，服务器出故障了！'
+            text: '词库中不存在该关键词：'+data['result']
         });
     }
 }

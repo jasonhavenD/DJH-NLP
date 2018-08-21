@@ -16,6 +16,8 @@ from stanfordcorenlp import StanfordCoreNLP
 '''
 Guangdong University of Foreign Studies is located in Guangzhou.
 '''
+nlp = StanfordCoreNLP("/home/jasonhaven/stanford-corenlp-full-2018-02-27")
+
 def stanford_ner(text, language='english'):
 	nlp = StanfordCoreNLP("/home/jasonhaven/stanford-corenlp-full-2018-02-27")
 	if language == 'chinese':

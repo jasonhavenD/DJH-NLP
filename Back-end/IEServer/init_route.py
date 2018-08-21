@@ -354,7 +354,7 @@ def naming_entity_recognize():
 '''
 词向量
 '''
-from my_word_embedding import similarity, most_similar
+from word_embedding import similarity, most_similar
 
 
 @app.route("/BITIE/word_embedding/similarity",methods=['POST'])

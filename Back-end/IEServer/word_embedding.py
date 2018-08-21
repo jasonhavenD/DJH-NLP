@@ -20,12 +20,14 @@ def check_exists(word):
 
 
 def similarity(word1, word2):
-	if check_exists(word1) and check_exists(word2):
-		return float(model.similarity(word1, word2)), True
-	return -1, False  # 单词不存在
+	if not check_exists(word1):
+		return word1,False
+	if not check_exists(word2):
+		return word2,False
+	return float(model.similarity(word1, word2)), True
 
 
 def most_similar(word, topn=5):
-	if check_exists(word):
-		return model.most_similar(word, topn=topn), True
-	return -1, False  # 单词不存在
+	if not check_exists(word):
+		return word,False
+	return model.most_similar(word, topn=topn), True
